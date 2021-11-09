@@ -31,7 +31,7 @@ locals {
   is_master_account     = var.account_type == "master"
   is_member_account     = var.account_type == "member"
 
-  is_cloudtrail_enabled = local.is_individual_account || local.is_master_account
+  is_cloudtrail_enabled = (local.is_individual_account || local.is_master_account) && var.cloudtrail_enabled
 }
 
 # --------------------------------------------------------------------------------------------------

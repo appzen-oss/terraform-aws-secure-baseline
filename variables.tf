@@ -293,6 +293,11 @@ variable "config_global_resources_all_regions" {
 # Variables for cloudtrail-baseline module.
 # --------------------------------------------------------------------------------------------------
 
+variable "cloudtrail_enabled" {
+  description = "Boolean whether cloudtrail-baseline is enabled"
+  default     = true
+}
+
 variable "cloudtrail_cloudwatch_logs_enabled" {
   description = "Specifies whether the trail is delivered to CloudWatch Logs."
   default     = true

@@ -34,7 +34,7 @@ resource "aws_organizations_organization" "org" {
 
 ## TODO: Cloudtrail
 module "secure_baseline" {
-  source = "github.com/appzen-oss/terraform-aws-secure-baseline.git"
+  source = "github.com/appzen-oss/terraform-aws-secure-baseline.git?ref=main"
 
   account_type                         = "master"
   member_accounts                      = var.member_accounts
@@ -46,6 +46,7 @@ module "secure_baseline" {
 
   vpc_enable                         = false
   vpc_enable_flow_logs               = false
+  cloudtrail_enabled                 = false
   cloudtrail_cloudwatch_logs_enabled = false
   cloudtrail_sns_topic_enabled       = false
   ebs_enabled                        = false
