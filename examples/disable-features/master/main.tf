@@ -23,6 +23,7 @@ resource "aws_iam_user" "admin" {
 }
 
 # TODO: Support lookup  or create
+# data "aws_organizations_organization" "example" {}
 resource "aws_organizations_organization" "org" {
   aws_service_access_principals = [
     "access-analyzer.amazonaws.com",
@@ -44,14 +45,17 @@ module "secure_baseline" {
   support_iam_role_principal_arns      = [aws_iam_user.admin.arn]
   guardduty_disable_email_notification = true
 
-  vpc_enable                         = false
-  vpc_enable_flow_logs               = false
-  cloudtrail_enabled                 = false
+  analyzer_enabled                   = false
   cloudtrail_cloudwatch_logs_enabled = false
+  cloudtrail_enabled                 = false
   cloudtrail_sns_topic_enabled       = false
+  config_baseline_enabled            = false
   ebs_enabled                        = false
   guardduty_enabled                  = false
+  iam_enabled                        = false
   securityhub_enabled                = false
+  vpc_enable                         = false
+  vpc_enable_flow_logs               = false
   tags = {
     Environment = "infra"
     Product     = "security"

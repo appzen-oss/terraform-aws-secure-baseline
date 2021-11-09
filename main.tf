@@ -41,6 +41,7 @@ locals {
 module "iam_baseline" {
   source = "./modules/iam-baseline"
 
+  enabled                         = var.iam_enabled
   aws_account_id                  = var.aws_account_id
   support_iam_role_name           = var.support_iam_role_name
   support_iam_role_policy_name    = var.support_iam_role_policy_name

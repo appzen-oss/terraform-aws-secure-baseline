@@ -88,6 +88,11 @@ variable "use_external_audit_log_bucket" {
 # --------------------------------------------------------------------------------------------------
 # Variables for iam-baseline module.
 # --------------------------------------------------------------------------------------------------
+variable "iam_enabled" {
+  description = "Boolean whether iam-baseline is enabled."
+  default     = true
+}
+
 variable "create_password_policy" {
   type        = bool
   description = "Define if the password policy should be created."
@@ -543,6 +548,11 @@ variable "securityhub_enable_product_arns" {
 # --------------------------------------------------------------------------------------------------
 # Variables for analyzer-baseline module.
 # --------------------------------------------------------------------------------------------------
+variable "analyzer_enabled" {
+  description = "Boolean whether analyzer-baseline is enabled."
+  default     = true
+}
+
 variable "analyzer_name" {
   description = "The name for the IAM Access Analyzer resource to be created."
   default     = "default-analyzer"

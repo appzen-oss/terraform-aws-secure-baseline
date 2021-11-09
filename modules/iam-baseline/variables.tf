@@ -2,6 +2,12 @@ variable "aws_account_id" {
   description = "The AWS Account ID number of the account."
 }
 
+variable "enabled" {
+  type        = bool
+  description = "Boolean whether iam-baseline is enabled."
+  default     = true
+}
+
 variable "support_iam_role_name" {
   description = "The name of the the support role."
   default     = "IAM-Support"
@@ -75,4 +81,3 @@ variable "tags" {
     "Terraform" = true
   }
 }
-
