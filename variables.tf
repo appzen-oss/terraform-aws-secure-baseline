@@ -453,6 +453,14 @@ variable "organizations_changes_enabled" {
 }
 
 # --------------------------------------------------------------------------------------------------
+# Variables for ebs-baseline module.
+# --------------------------------------------------------------------------------------------------
+variable "ebs_enabled" {
+  description = "Boolean whether the ebs-baseline module is enabled or disabled"
+  default     = true
+}
+
+# --------------------------------------------------------------------------------------------------
 # Variables for guardduty-baseline module.
 # --------------------------------------------------------------------------------------------------
 variable "guardduty_enabled" {

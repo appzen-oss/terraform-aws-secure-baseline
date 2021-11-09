@@ -32,9 +32,9 @@ resource "aws_organizations_organization" "org" {
   feature_set = "ALL"
 }
 
-## TODO: disable EBS, Cloudtrail
+## TODO: Cloudtrail
 module "secure_baseline" {
-  source = "nozaq/secure-baseline/aws"
+  source = "github.com/appzen-oss/terraform-aws-secure-baseline.git"
 
   account_type                         = "master"
   member_accounts                      = var.member_accounts
@@ -48,6 +48,7 @@ module "secure_baseline" {
   vpc_enable_flow_logs               = false
   cloudtrail_cloudwatch_logs_enabled = false
   cloudtrail_sns_topic_enabled       = false
+  ebs_enabled                        = false
   guardduty_enabled                  = false
   securityhub_enabled                = false
   tags = {
