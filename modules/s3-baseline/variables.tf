@@ -1,3 +1,8 @@
+variable "enabled" {
+  description = "Boolean whether the S3 baseline module should be enabled"
+  default     = true
+}
+
 variable "block_public_acls" {
   description = "Whether Amazon S3 should block public ACLs for buckets in this account. Defaults to true."
   default     = true

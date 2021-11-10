@@ -18,31 +18,32 @@ data "aws_caller_identity" "current" {
 
 # TODO: For what?
 # Alernatives?
-resource "aws_iam_user" "admin" {
-  name = "admin"
-}
+#resource "aws_iam_user" "admin" {
+#  name = "admin"
+#}
 
 # TODO: Support lookup  or create
 # data "aws_organizations_organization" "example" {}
-resource "aws_organizations_organization" "org" {
-  aws_service_access_principals = [
-    "access-analyzer.amazonaws.com",
-    "cloudtrail.amazonaws.com",
-    "config.amazonaws.com",
-  ]
-  feature_set = "ALL"
-}
+#resource "aws_organizations_organization" "org" {
+#  aws_service_access_principals = [
+#    "access-analyzer.amazonaws.com",
+#    "cloudtrail.amazonaws.com",
+#    "config.amazonaws.com",
+#  ]
+#  feature_set = "ALL"
+#}
 
-## TODO: Cloudtrail
 module "secure_baseline" {
   source = "github.com/appzen-oss/terraform-aws-secure-baseline.git?ref=main"
 
-  account_type                         = "master"
-  member_accounts                      = var.member_accounts
-  audit_log_bucket_name                = var.audit_s3_bucket_name
-  aws_account_id                       = data.aws_caller_identity.current.account_id
-  region                               = var.region
-  support_iam_role_principal_arns      = [aws_iam_user.admin.arn]
+  account_type                  = "master"
+  member_accounts               = var.member_accounts
+  use_external_audit_log_bucket = true
+  audit_log_bucket_name         = var.audit_s3_bucket_name
+  aws_account_id                = data.aws_caller_identity.current.account_id
+  region                        = var.region
+  #support_iam_role_principal_arns      = [aws_iam_user.admin.arn]
+  support_iam_role_principal_arns      = []
   guardduty_disable_email_notification = true
 
   analyzer_enabled                   = false
@@ -53,6 +54,7 @@ module "secure_baseline" {
   ebs_enabled                        = false
   guardduty_enabled                  = false
   iam_enabled                        = false
+  s3_baseline_enabled                = false
   securityhub_enabled                = false
   vpc_enable                         = false
   vpc_enable_flow_logs               = false

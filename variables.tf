@@ -496,6 +496,11 @@ variable "guardduty_invitation_message" {
 # --------------------------------------------------------------------------------------------------
 # Variables for s3-baseline module.
 # --------------------------------------------------------------------------------------------------
+variable "s3_baseline_enabled" {
+  description = "Boolean whether the S3 baseline module should be enabled"
+  default     = true
+}
+
 variable "s3_block_public_acls" {
   description = "Whether Amazon S3 should block public ACLs for buckets in this account. Defaults to true."
   default     = true

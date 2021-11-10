@@ -127,6 +127,7 @@ module "alarm_baseline" {
 module "s3_baseline" {
   source = "./modules/s3-baseline"
 
+  enabled                 = var.s3_baseline_enabled
   block_public_acls       = var.s3_block_public_acls
   block_public_policy     = var.s3_block_public_policy
   ignore_public_acls      = var.s3_ignore_public_acls
